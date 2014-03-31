@@ -2,3 +2,6 @@
 2) Asks you all the squares up to that number in random order
 3) Displays a graph of results
 4) Asks to retry or not
+
+
+JAR works on its own, no need for any sources
