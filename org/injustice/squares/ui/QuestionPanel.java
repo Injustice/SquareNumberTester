@@ -1,6 +1,6 @@
 package org.injustice.squares.ui;
 
-import org.injustice.squares.Square;
+import org.injustice.squares.handlers.Handler;
 
 import javax.swing.*;
 
@@ -9,7 +9,7 @@ import javax.swing.*;
  */
 class QuestionPanel extends JPanel {
 
-    private final Square s;
+    private final Handler handler;
     private final JLabel questionLabel;
     private final JLabel verdictLabel;
     private final JTextField answerField;
@@ -18,8 +18,8 @@ class QuestionPanel extends JPanel {
     private int attempt = 1;
     private int number;
 
-    public QuestionPanel(Square s, int number) {
-        this.s = s;
+    public QuestionPanel(Handler handler, int number) {
+        this.handler = handler;
         this.number = number;
         final JButton checkButton;
 
@@ -57,7 +57,7 @@ class QuestionPanel extends JPanel {
         answerField.requestFocus();
         if (answerField.getText().equals(Integer.toString(number * number))) {
             verdictLabel.setText("Correct!");
-            s.setCorrect(attempt);
+            handler.setCorrect(attempt);
             attemptLabel.setText((attempt = 1) + "");
         } else {
             verdictLabel.setText("Try again!");
@@ -71,7 +71,7 @@ class QuestionPanel extends JPanel {
         String question = "What is " + number + " squared?";
         questionLabel.setText(question);
         answerField.setText("");
-        questionNumber.setText("" + s.getGenerated().size() + "/" +
-                s.getTotalNumberQuestions());
+        questionNumber.setText("" + handler.getDataHolder().getGenerated().size() + "/" +
+                handler.getDataHolder().getTotalNumberQuestions());
     }
 }

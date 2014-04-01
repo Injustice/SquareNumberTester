@@ -1,6 +1,6 @@
 package org.injustice.squares.ui;
 
-import org.injustice.squares.Square;
+import org.injustice.squares.handlers.Handler;
 
 import javax.swing.*;
 
@@ -12,7 +12,7 @@ public class MainFrame extends JFrame {
     private final QuestionPanel panel;
     private int number;
 
-    public MainFrame(Square s, Integer initialNumber) {
+    public MainFrame(Handler s, Integer initialNumber) {
         setNumber(initialNumber);
         panel = new QuestionPanel(s, getNumber());
         initComponents();
@@ -21,7 +21,7 @@ public class MainFrame extends JFrame {
     private void initComponents() {
         add(panel);
         panel.setQuestion(number);
-        setTitle("Square Numbers Test");
+        setTitle("Handler Numbers Test");
         setResizable(false);
         setLocationRelativeTo(null);
         pack();
