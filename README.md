@@ -15,3 +15,5 @@ Tests you on square numbers up to the number you enter
 JAR works on its own, no need for any sources
 
 Use it to test the program if so desired
+
+Requires Java 8
