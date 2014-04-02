@@ -18,7 +18,7 @@ public class QuestionHandler {
         }
         handler.getDataHandler().getAnswered().add(handler.getDataHandler().getFrame().getNumber());
         handler.getDataHandler().getAttempts().putIfAbsent(handler.getDataHandler().getFrame().getNumber(), attempts);
-        final long time = System.currentTimeMillis() - handler.getDataHandler().getStartQuestionTime();
+        final long time = System.currentTimeMillis() - handler.getDataHandler().getStartQuestionTime().longValue();
         handler.getDataHandler().setStartQuestionTime(System.currentTimeMillis());
         handler.getDataHandler().getTimeTakenMap().putIfAbsent(handler.getDataHandler().getFrame().getNumber(), time);
         if (handler.getDataHandler().getAnswered().size() == handler.getDataHandler().getTotalNumberQuestions().intValue()) {

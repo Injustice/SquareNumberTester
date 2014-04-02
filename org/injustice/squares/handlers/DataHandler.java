@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by Azmat on 01/04/2014.
@@ -18,18 +19,18 @@ public class DataHandler {
     private final List<Integer> answered;
     private final List<Integer> generated;
     private AtomicInteger totalNumberQuestions = new AtomicInteger(15);
+    private AtomicInteger correctInFirstGo;
+    private AtomicLong startQuestionTime;
     private final Random random;
     private final ConcurrentHashMap<Integer, Long> timeTakenMap;
     private final ConcurrentHashMap<Integer, Integer> attempts;
-    private long startQuestionTime;
-    private AtomicInteger correctInFirstGo;
     private MainFrame frame;
     private Handler handler;
-
 
     public DataHandler(final Handler handler) {
         answered = new ArrayList<>();
         generated = new ArrayList<>();
+        startQuestionTime = new AtomicLong();
         correctInFirstGo = new AtomicInteger(totalNumberQuestions.intValue());
         timeTakenMap = new ConcurrentHashMap<>();
         attempts = new ConcurrentHashMap<>();
@@ -51,6 +52,10 @@ public class DataHandler {
         return correctInFirstGo;
     }
 
+    public AtomicLong getStartQuestionTime() {
+        return startQuestionTime;
+    }
+
     public synchronized void setTotalNumberQuestions(int totalNumberQuestions) {
         this.totalNumberQuestions.set(totalNumberQuestions);
     }
@@ -67,20 +72,16 @@ public class DataHandler {
         return timeTakenMap;
     }
 
-    public Random getRandom() {
-        return random;
+    public synchronized void setStartQuestionTime(long startQuestionTime) {
+        this.startQuestionTime.set(startQuestionTime);
     }
 
-    public long getStartQuestionTime() {
-        return startQuestionTime;
-    }
-
-    public void setStartQuestionTime(long startQuestionTime) {
-        this.startQuestionTime = startQuestionTime;
-    }
-
-    public void setCorrectInFirstGo(int correctInFirstGo) {
+    public synchronized void setCorrectInFirstGo(int correctInFirstGo) {
         this.correctInFirstGo.set(correctInFirstGo);
+    }
+
+    public synchronized Random getRandom() {
+        return random;
     }
 
     public void createFrame() {
