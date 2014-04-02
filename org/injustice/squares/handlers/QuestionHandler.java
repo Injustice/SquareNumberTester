@@ -17,11 +17,11 @@ public class QuestionHandler {
             System.out.println("Negating attempts");
         }
         handler.getDataHandler().getAnswered().add(handler.getDataHandler().getFrame().getNumber());
-        handler.getDataHandler().getAttempts().put(handler.getDataHandler().getFrame().getNumber(), attempts);
+        handler.getDataHandler().getAttempts().putIfAbsent(handler.getDataHandler().getFrame().getNumber(), attempts);
         final long time = System.currentTimeMillis() - handler.getDataHandler().getStartQuestionTime();
         handler.getDataHandler().setStartQuestionTime(System.currentTimeMillis());
-        handler.getDataHandler().getTimeTakenMap().put(handler.getDataHandler().getFrame().getNumber(), time);
-        if (handler.getDataHandler().getAnswered().size() == handler.getDataHandler().getTotalNumberQuestions()) {
+        handler.getDataHandler().getTimeTakenMap().putIfAbsent(handler.getDataHandler().getFrame().getNumber(), time);
+        if (handler.getDataHandler().getAnswered().size() == handler.getDataHandler().getTotalNumberQuestions().intValue()) {
             handler.validateFinished();
             DrawChart chart = new DrawChart(handler.getDataHandler().getTimeTakenMap(), handler.getComputer(), handler.getDataHandler().getAttempts());
             handler.getUiHandler().checkRetry(chart);
@@ -35,7 +35,7 @@ public class QuestionHandler {
     }
 
     public Integer generateNumber() {
-        Integer number = handler.getDataHandler().getRandom().nextInt(handler.getDataHandler().getTotalNumberQuestions() + 1);
+        Integer number = handler.getDataHandler().getRandom().nextInt(handler.getDataHandler().getTotalNumberQuestions().intValue() + 1);
         return !handler.getDataHandler().getGenerated().contains(number) && number != 0 ? addToList(number) : generateNumber();
     }
 

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by Azmat on 01/04/2014.
@@ -15,12 +17,12 @@ public class DataHandler {
 
     private final List<Integer> answered;
     private final List<Integer> generated;
-    private int totalNumberQuestions = 15;
+    private AtomicInteger totalNumberQuestions = new AtomicInteger(15);
     private final Random random;
-    private final HashMap<Integer, Long> timeTakenMap;
-    private final HashMap<Integer, Integer> attempts;
+    private final ConcurrentHashMap<Integer, Long> timeTakenMap;
+    private final ConcurrentHashMap<Integer, Integer> attempts;
     private long startQuestionTime;
-    private int correctInFirstGo;
+    private AtomicInteger correctInFirstGo;
     private MainFrame frame;
     private Handler handler;
 
@@ -28,10 +30,9 @@ public class DataHandler {
     public DataHandler(final Handler handler) {
         answered = new ArrayList<>();
         generated = new ArrayList<>();
-        startQuestionTime = System.currentTimeMillis();
-        correctInFirstGo = totalNumberQuestions;
-        timeTakenMap = new HashMap<>();
-        attempts = new HashMap<>();
+        correctInFirstGo = new AtomicInteger(totalNumberQuestions.intValue());
+        timeTakenMap = new ConcurrentHashMap<>();
+        attempts = new ConcurrentHashMap<>();
         random = new Random();
         this.handler = handler;
     }
@@ -42,24 +43,32 @@ public class DataHandler {
 
     public List<Integer> getAnswered() { return answered; }
 
-    public int getTotalNumberQuestions() {
+    public AtomicInteger getTotalNumberQuestions() {
         return totalNumberQuestions;
     }
 
-    public void setTotalNumberQuestions(int totalNumberQuestions) {
-        this.totalNumberQuestions = totalNumberQuestions;
+    public AtomicInteger getCorrectInFirstGo() {
+        return correctInFirstGo;
     }
 
-    public HashMap<Integer, Integer> getAttempts() {
+    public synchronized void setTotalNumberQuestions(int totalNumberQuestions) {
+        this.totalNumberQuestions.set(totalNumberQuestions);
+    }
+
+    public synchronized void negateCorrect() {
+        correctInFirstGo.decrementAndGet();
+    }
+
+    public synchronized ConcurrentHashMap<Integer, Integer> getAttempts() {
         return attempts;
+    }
+
+    public synchronized ConcurrentHashMap<Integer, Long> getTimeTakenMap() {
+        return timeTakenMap;
     }
 
     public Random getRandom() {
         return random;
-    }
-
-    public HashMap<Integer, Long> getTimeTakenMap() {
-        return timeTakenMap;
     }
 
     public long getStartQuestionTime() {
@@ -70,22 +79,14 @@ public class DataHandler {
         this.startQuestionTime = startQuestionTime;
     }
 
-    public void negateCorrect() {
-        correctInFirstGo--;
-    }
-
-    public int getCorrectInFirstGo() {
-        return correctInFirstGo;
-    }
-
     public void setCorrectInFirstGo(int correctInFirstGo) {
-        this.correctInFirstGo = correctInFirstGo;
+        this.correctInFirstGo.set(correctInFirstGo);
     }
-
 
     public void createFrame() {
         frame = new MainFrame(handler, handler.getQuestionHandler().generateNumber());
         SwingUtilities.invokeLater(() -> frame.setVisible(true));
+        setStartQuestionTime(System.currentTimeMillis());
     }
 
     public MainFrame getFrame() {

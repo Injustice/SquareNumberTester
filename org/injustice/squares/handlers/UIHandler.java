@@ -29,8 +29,6 @@ public class UIHandler {
         handler.getDataHandler().createFrame();
     }
 
-
-
     public void checkRetry(ApplicationFrame applicationFrame) {
         int result = JOptionPane.showOptionDialog(new JFrame() {
                                                       public boolean isShowing() {
@@ -52,7 +50,7 @@ public class UIHandler {
         switch (result) {
             case 0:
                 applicationFrame.setVisible(false);
-                new Handler();
+                Handler.getInstance().reset();
             case 1:
                 applicationFrame.requestFocus();
         }

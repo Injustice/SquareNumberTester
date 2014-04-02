@@ -12,7 +12,7 @@ public class Handler {
     private UIHandler uiHandler;
     private QuestionHandler questionHandler;
 
-    public Handler() {
+    private Handler() {
         dataHandler = new DataHandler(Handler.this);
         questionHandler = new QuestionHandler(Handler.this);
         uiHandler = new UIHandler(Handler.this);
@@ -21,25 +21,37 @@ public class Handler {
     }
 
     public void validateFinished() {
-        if (dataHandler.getAnswered().size() == dataHandler.getTotalNumberQuestions()) {
+        if (dataHandler.getAnswered().size() == dataHandler.getTotalNumberQuestions().intValue()) {
             computer = new Computer(getDataHandler().getTimeTakenMap());
             dataHandler.getFrame().dispose();
         }
     }
 
-    public DataHandler getDataHandler() {
+    public synchronized DataHandler getDataHandler() {
         return dataHandler;
     }
 
-    public Computer getComputer() {
+    public synchronized Computer getComputer() {
         return computer;
     }
 
-    public UIHandler getUiHandler() {
+    public synchronized UIHandler getUiHandler() {
         return uiHandler;
     }
 
-    public QuestionHandler getQuestionHandler() {
+    public synchronized QuestionHandler getQuestionHandler() {
         return questionHandler;
+    }
+
+    public synchronized void reset() {
+        new Handler();
+    }
+
+    public static Handler getInstance() {
+        return Holder.instance;
+    }
+
+    private static class Holder {
+        static Handler instance = new Handler();
     }
 }
