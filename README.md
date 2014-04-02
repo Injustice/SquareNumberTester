@@ -13,4 +13,5 @@ Tests you on square numbers up to the number you enter
 ##Note
 
 JAR works on its own, no need for any sources
+
 Use it to test the program if so desired
