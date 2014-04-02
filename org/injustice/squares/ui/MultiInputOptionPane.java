@@ -15,21 +15,21 @@ public class MultiInputOptionPane extends JOptionPane {
         panel.add(new JLabel("Maximum number:"));
         panel.add(option);
         int result = JOptionPane.showConfirmDialog(null, panel,
-                "Handler Tester", JOptionPane.OK_CANCEL_OPTION);
+                "Square Number Tester", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
             if (!option.getText().matches("^[a-zA-Z]+$")) {
                 System.out.println("Max number: " + option.getText());
                 handler.getDataHandler().setTotalNumberQuestions(Integer.parseInt(option.getText()));
-                handler.getDataHandler().setCorrectInFirstGo(handler.getDataHandler().getTotalNumberQuestions());
+                handler.getDataHandler().setCorrectInFirstGo(handler.getDataHandler().getTotalNumberQuestions().intValue());
             } else {
+                System.out.println("Making new");
                 new MultiInputOptionPane(handler);
             }
         } else if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.CLOSED_OPTION) {
             System.exit(0);
         } else {
+            System.out.println("wat");
             new MultiInputOptionPane(handler);
         }
-
-
     }
 }
