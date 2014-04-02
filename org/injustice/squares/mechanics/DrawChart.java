@@ -16,17 +16,18 @@ import org.jfree.ui.RefineryUtilities;
 
 import java.awt.*;
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Azmat on 30/03/2014.
  */
 public class DrawChart extends ApplicationFrame {
-    private HashMap<Integer, Long> timeTaken;
+    private ConcurrentHashMap<Integer, Long> timeTaken;
     private Computer computer;
     private final ApplicationFrame frame = this;
-    private HashMap<Integer, Integer> attempts;
+    private ConcurrentHashMap<Integer, Integer> attempts;
 
-    public DrawChart(HashMap<Integer, Long> timeTaken, Computer computer, HashMap<Integer, Integer> attempts) {
+    public DrawChart(ConcurrentHashMap<Integer, Long> timeTaken, Computer computer, ConcurrentHashMap<Integer, Integer> attempts) {
         this("Results");
         this.attempts = attempts;
         this.computer = computer;

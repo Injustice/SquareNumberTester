@@ -1,14 +1,14 @@
 package org.injustice.squares.mechanics;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Azmat on 28/03/2014.
  */
 public class Computer {
-    private final HashMap<Integer, Long> timeTaken;
+    private final ConcurrentHashMap<Integer, Long> timeTaken;
 
-    public Computer(HashMap<Integer, Long> timeTaken) {
+    public Computer(ConcurrentHashMap<Integer, Long> timeTaken) {
         this.timeTaken = timeTaken;
     }
 
