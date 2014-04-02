@@ -1,5 +1,8 @@
 #Square Number Tester
 
+##What it does
+Tests you on square numbers up to the number you enter
+
 ##Features
 
 1. Asks which number you want to test squares up to
@@ -10,3 +13,4 @@
 ##Note
 
 JAR works on its own, no need for any sources
+Use it to test the program if so desired

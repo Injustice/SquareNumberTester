@@ -21,7 +21,7 @@ public class MainFrame extends JFrame {
     private void initComponents() {
         add(panel);
         panel.setQuestion(number);
-        setTitle("Handler Numbers Test");
+        setTitle("Square Numbers Test");
         setResizable(false);
         setLocationRelativeTo(null);
         pack();

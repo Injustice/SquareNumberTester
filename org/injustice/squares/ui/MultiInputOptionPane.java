@@ -19,7 +19,8 @@ public class MultiInputOptionPane extends JOptionPane {
         if (result == JOptionPane.OK_OPTION) {
             if (!option.getText().matches("^[a-zA-Z]+$")) {
                 System.out.println("Max number: " + option.getText());
-                handler.getDataHolder().setTotalNumberQuestions(Integer.parseInt(option.getText()));
+                handler.getDataHandler().setTotalNumberQuestions(Integer.parseInt(option.getText()));
+                handler.getDataHandler().setCorrectInFirstGo(handler.getDataHandler().getTotalNumberQuestions());
             } else {
                 new MultiInputOptionPane(handler);
             }

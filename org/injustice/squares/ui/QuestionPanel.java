@@ -57,7 +57,7 @@ class QuestionPanel extends JPanel {
         answerField.requestFocus();
         if (answerField.getText().equals(Integer.toString(number * number))) {
             verdictLabel.setText("Correct!");
-            handler.setCorrect(attempt);
+            handler.getQuestionHandler().setCorrect(attempt);
             attemptLabel.setText((attempt = 1) + "");
         } else {
             verdictLabel.setText("Try again!");
@@ -71,7 +71,7 @@ class QuestionPanel extends JPanel {
         String question = "What is " + number + " squared?";
         questionLabel.setText(question);
         answerField.setText("");
-        questionNumber.setText("" + handler.getDataHolder().getGenerated().size() + "/" +
-                handler.getDataHolder().getTotalNumberQuestions());
+        questionNumber.setText("" + handler.getDataHandler().getGenerated().size() + "/" +
+                handler.getDataHandler().getTotalNumberQuestions());
     }
 }
