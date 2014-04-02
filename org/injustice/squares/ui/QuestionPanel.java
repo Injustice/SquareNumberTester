@@ -7,6 +7,7 @@ import javax.swing.*;
 /**
  * Created by Azmat on 28/03/2014.
  */
+@SuppressWarnings("DefaultFileTemplate")
 class QuestionPanel extends JPanel {
 
     private final Handler handler;

@@ -4,7 +4,6 @@ import org.injustice.squares.ui.MainFrame;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,18 +13,19 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Created by Azmat on 01/04/2014.
  */
+@SuppressWarnings("ALL")
 public class DataHandler {
 
     private final List<Integer> answered;
     private final List<Integer> generated;
-    private AtomicInteger totalNumberQuestions = new AtomicInteger(15);
-    private AtomicInteger correctInFirstGo;
-    private AtomicLong startQuestionTime;
+    private final AtomicInteger totalNumberQuestions = new AtomicInteger(15);
+    private final AtomicInteger correctInFirstGo;
+    private final AtomicLong startQuestionTime;
     private final Random random;
     private final ConcurrentHashMap<Integer, Long> timeTakenMap;
     private final ConcurrentHashMap<Integer, Integer> attempts;
     private MainFrame frame;
-    private Handler handler;
+    private final Handler handler;
 
     public DataHandler(final Handler handler) {
         answered = new ArrayList<>();

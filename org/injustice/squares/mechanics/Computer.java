@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by Azmat on 28/03/2014.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class Computer {
     private final ConcurrentHashMap<Integer, Long> timeTaken;
 

@@ -7,6 +7,7 @@ import javax.swing.*;
 /**
  * Created by Azmat on 28/03/2014.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class MainFrame extends JFrame {
 
     private final QuestionPanel panel;

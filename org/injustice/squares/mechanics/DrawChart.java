@@ -15,20 +15,19 @@ import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
 import java.awt.*;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Azmat on 30/03/2014.
  */
+@SuppressWarnings("ALL")
 public class DrawChart extends ApplicationFrame {
-    private ConcurrentHashMap<Integer, Long> timeTaken;
-    private Computer computer;
-    private final ApplicationFrame frame = this;
-    private ConcurrentHashMap<Integer, Integer> attempts;
+    private final ConcurrentHashMap<Integer, Long> timeTaken;
+    private final Computer computer;
+    private final ConcurrentHashMap<Integer, Integer> attempts;
 
     public DrawChart(ConcurrentHashMap<Integer, Long> timeTaken, Computer computer, ConcurrentHashMap<Integer, Integer> attempts) {
-        this("Results");
+        super("Results");
         this.attempts = attempts;
         this.computer = computer;
         this.timeTaken = timeTaken;
@@ -39,15 +38,12 @@ public class DrawChart extends ApplicationFrame {
         panel.setMouseWheelEnabled(true);
         panel.setPreferredSize(new Dimension(500, 270));
         setContentPane(panel);
-        frame.pack();
-        RefineryUtilities.centerFrameOnScreen(frame);
-        frame.setVisible(true);
+        pack();
+        RefineryUtilities.centerFrameOnScreen(this);
+        setVisible(true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
-    private DrawChart(String title) {
-        super(title);
-    }
 
     private CategoryDataset createDataset() {
         String series = "Results (attempts)";
@@ -93,9 +89,5 @@ public class DrawChart extends ApplicationFrame {
                         Math.PI / 6.0)
         );
         return chart;
-    }
-
-    public ApplicationFrame getFrame() {
-        return frame;
     }
 }

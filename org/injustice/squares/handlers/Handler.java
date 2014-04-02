@@ -5,12 +5,13 @@ import org.injustice.squares.mechanics.Computer;
 /**
  * Created by Azmat on 28/03/2014.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class Handler {
 
     private Computer computer;
-    private DataHandler dataHandler;
-    private UIHandler uiHandler;
-    private QuestionHandler questionHandler;
+    private final DataHandler dataHandler;
+    private final UIHandler uiHandler;
+    private final QuestionHandler questionHandler;
 
     private Handler() {
         dataHandler = new DataHandler(Handler.this);
@@ -52,6 +53,6 @@ public class Handler {
     }
 
     private static class Holder {
-        static Handler instance = new Handler();
+        static final Handler instance = new Handler();
     }
 }

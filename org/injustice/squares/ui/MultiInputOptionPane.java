@@ -7,6 +7,7 @@ import javax.swing.*;
 /**
  * Created by Azmat on 30/03/2014.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class MultiInputOptionPane extends JOptionPane {
     public MultiInputOptionPane(Handler handler) {
         JTextField option = new JTextField(3);

@@ -5,6 +5,7 @@ import org.injustice.squares.mechanics.DrawChart;
 /**
  * Created by Azmat on 01/04/2014.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class QuestionHandler {
     private final Handler handler;
     public QuestionHandler(Handler handler) {

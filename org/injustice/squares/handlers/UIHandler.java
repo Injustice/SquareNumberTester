@@ -9,8 +9,9 @@ import java.awt.*;
 /**
  * Created by Azmat on 01/04/2014.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class UIHandler {
-    private Handler handler;
+    private final Handler handler;
 
     public UIHandler(Handler handler) {
         this.handler = handler;
