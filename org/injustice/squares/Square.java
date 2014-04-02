@@ -7,6 +7,6 @@ import org.injustice.squares.handlers.Handler;
  */
 public class Square {
     public static void main(String[] args) {
-        new Handler();
+        Handler.getInstance();
     }
 }
