@@ -3,11 +3,13 @@ package org.injustice.squares.ui;
 import org.injustice.squares.handlers.Handler;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Azmat on 28/03/2014.
+ * Displays the question panel with all of its features
  */
-@SuppressWarnings("DefaultFileTemplate")
 class QuestionPanel extends JPanel {
 
     private final Handler handler;
@@ -43,8 +45,24 @@ class QuestionPanel extends JPanel {
         questionNumber.setBounds(5, 90, 50, 25);
         attemptLabel.setBounds(320, 90, 15, 25);
 
+        /*
         answerField.addActionListener(ae -> checkSolution());
         checkButton.addActionListener(ae -> checkSolution());
+        JAVA 8 SYNTAX
+         */
+
+        answerField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                checkSolution();
+            }
+        });
+        checkButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                checkSolution();
+            }
+        });
 
         add(questionLabel);
         add(answerField);

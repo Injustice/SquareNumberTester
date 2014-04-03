@@ -6,8 +6,9 @@ import javax.swing.*;
 
 /**
  * Created by Azmat on 30/03/2014.
+ * Custom class which displays a JOptionPane with a JLabel into which
+ * The user may enter the information required
  */
-@SuppressWarnings("DefaultFileTemplate")
 public class MultiInputOptionPane extends JOptionPane {
     public MultiInputOptionPane(Handler handler) {
         JTextField option = new JTextField(3);

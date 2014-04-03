@@ -8,8 +8,8 @@ import java.awt.*;
 
 /**
  * Created by Azmat on 01/04/2014.
+ * Handles the UI display timing
  */
-@SuppressWarnings("DefaultFileTemplate")
 public class UIHandler {
     private final Handler handler;
 

@@ -12,8 +12,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by Azmat on 01/04/2014.
+ * Holds all the data in the program
  */
-@SuppressWarnings("ALL")
 public class DataHandler {
 
     private final List<Integer> answered;
@@ -24,8 +24,8 @@ public class DataHandler {
     private final Random random;
     private final ConcurrentHashMap<Integer, Long> timeTakenMap;
     private final ConcurrentHashMap<Integer, Integer> attempts;
-    private MainFrame frame;
     private final Handler handler;
+    private MainFrame frame;
 
     public DataHandler(final Handler handler) {
         answered = new ArrayList<>();
@@ -60,33 +60,41 @@ public class DataHandler {
         this.totalNumberQuestions.set(totalNumberQuestions);
     }
 
+    public ConcurrentHashMap<Integer, Integer> getAttempts() {
+        return attempts;
+    }
+
+    public ConcurrentHashMap<Integer, Long> getTimeTakenMap() {
+        return timeTakenMap;
+    }
+
     public synchronized void negateCorrect() {
         correctInFirstGo.decrementAndGet();
     }
 
-    public synchronized ConcurrentHashMap<Integer, Integer> getAttempts() {
-        return attempts;
-    }
-
-    public synchronized ConcurrentHashMap<Integer, Long> getTimeTakenMap() {
-        return timeTakenMap;
-    }
-
-    public synchronized void setStartQuestionTime(long startQuestionTime) {
+    public void setStartQuestionTime(long startQuestionTime) {
         this.startQuestionTime.set(startQuestionTime);
     }
 
-    public synchronized void setCorrectInFirstGo(int correctInFirstGo) {
+    public void setCorrectInFirstGo(int correctInFirstGo) {
         this.correctInFirstGo.set(correctInFirstGo);
     }
 
-    public synchronized Random getRandom() {
+    public Random getRandom() {
         return random;
     }
 
     public void createFrame() {
         frame = new MainFrame(handler, handler.getQuestionHandler().generateNumber());
-        SwingUtilities.invokeLater(() -> frame.setVisible(true));
+  /*      SwingUtilities.invokeLater(() -> frame.setVisible(true));
+  JAVA 8 SYNTAX
+   */
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                frame.setVisible(true);
+            }
+        });
         setStartQuestionTime(System.currentTimeMillis());
     }
 

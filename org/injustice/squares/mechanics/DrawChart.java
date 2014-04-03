@@ -19,8 +19,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Azmat on 30/03/2014.
+ * The process behind and means of showing the chart
  */
-@SuppressWarnings("ALL")
 public class DrawChart extends ApplicationFrame {
     private final ConcurrentHashMap<Integer, Long> timeTaken;
     private final Computer computer;

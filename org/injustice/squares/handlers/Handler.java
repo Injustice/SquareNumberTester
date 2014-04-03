@@ -4,8 +4,11 @@ import org.injustice.squares.mechanics.Computer;
 
 /**
  * Created by Azmat on 28/03/2014.
+ * Handler with Singleton design pattern which puts all the other handlers
+ * In a place easy to get
+ *
+ * Handles everything in the program
  */
-@SuppressWarnings("DefaultFileTemplate")
 public class Handler {
 
     private Computer computer;
@@ -52,7 +55,12 @@ public class Handler {
         return Holder.instance;
     }
 
+    public static Handler createInstance() {
+        Holder.instance = new Handler();
+        return getInstance();
+    }
+
     private static class Holder {
-        static final Handler instance = new Handler();
+        static Handler instance;
     }
 }
