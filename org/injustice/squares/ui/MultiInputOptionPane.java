@@ -11,6 +11,7 @@ import javax.swing.*;
  * The user may enter the information required
  */
 public class MultiInputOptionPane extends JOptionPane {
+    private final int squareRootOfIntegerMaxValue = 46340;
     public MultiInputOptionPane(Handler handler) {
         JTextField option = new JTextField(3);
         option.addAncestorListener(new RequestFocusListener());
@@ -26,21 +27,21 @@ public class MultiInputOptionPane extends JOptionPane {
                             (int) Double.parseDouble(option.getText())) {
                         int number = (int) Double.parseDouble(option.getText());
                         if (number > 0) {
-                            if (number <= 46340) {
+                            if (number <= squareRootOfIntegerMaxValue) {
                                 System.out.println("Max number: " + option.getText());
                                 handler.getDataHandler().setTotalNumberQuestions(number);
                                 handler.getDataHandler().setCorrectInFirstGo(handler.getDataHandler().getTotalNumberQuestions().intValue());
                             } else {
-                                throw new IllegalInputException("Input may not be greater than 46350");
+                                throw new IllegalInputException("less than 46350");
                             }
                         } else {
-                            throw new IllegalInputException("Input must be positive");
+                            throw new IllegalInputException("positive");
                         }
                     } else {
-                        throw new IllegalInputException("Input must be an integer");
+                        throw new IllegalInputException("an integer");
                     }
                 } else {
-                    throw new IllegalInputException("Input must be a number");
+                    throw new IllegalInputException("a number");
                 }
             } catch (IllegalInputException e) {
                 e.printStackTrace();
