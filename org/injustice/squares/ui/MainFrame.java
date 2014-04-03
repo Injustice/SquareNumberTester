@@ -3,6 +3,8 @@ package org.injustice.squares.ui;
 import org.injustice.squares.handlers.Handler;
 
 import javax.swing.*;
+import java.awt.Dimension;
+
 
 /**
  * Created by Azmat on 28/03/2014.
@@ -24,9 +26,9 @@ public class MainFrame extends JFrame {
         panel.setQuestion(number);
         setTitle("Square Numbers Test");
         setResizable(false);
+        setPreferredSize(new Dimension(350, 150));
         setLocationRelativeTo(null);
-        pack();
-        setSize(350, 150);
+        validate();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
