@@ -31,23 +31,23 @@ public class Handler {
         }
     }
 
-    public synchronized DataHandler getDataHandler() {
+    public DataHandler getDataHandler() {
         return dataHandler;
     }
 
-    public synchronized Computer getComputer() {
+    public Computer getComputer() {
         return computer;
     }
 
-    public synchronized UIHandler getUiHandler() {
+    public UIHandler getUiHandler() {
         return uiHandler;
     }
 
-    public synchronized QuestionHandler getQuestionHandler() {
+    public QuestionHandler getQuestionHandler() {
         return questionHandler;
     }
 
-    public synchronized void reset() {
+    public void reset() {
         new Handler();
     }
 

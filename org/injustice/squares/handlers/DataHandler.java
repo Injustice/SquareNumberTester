@@ -88,7 +88,7 @@ public class DataHandler {
         frame = new MainFrame(handler, handler.getQuestionHandler().generateNumber());
   /*      SwingUtilities.invokeLater(() -> frame.setVisible(true));
   JAVA 8 SYNTAX
-   */
+   */           System.out.println("here");
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

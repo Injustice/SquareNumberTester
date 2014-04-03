@@ -27,8 +27,8 @@ public class MainFrame extends JFrame {
         setTitle("Square Numbers Test");
         setResizable(false);
         setPreferredSize(new Dimension(350, 150));
+        pack();
         setLocationRelativeTo(null);
-        validate();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
