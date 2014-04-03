@@ -4,6 +4,7 @@ import javax.swing.*;
 
 /**
  * Created by Azmat on 03/04/2014.
+ * Shows a JOptionPane of the error
  */
 public class IllegalInputException extends Exception {
     private final JFrame parent;
@@ -19,7 +20,7 @@ public class IllegalInputException extends Exception {
     private void displayProblem() {
         JOptionPane.showMessageDialog(
                 parent,
-                getMessage(),
+                "Input must be " + getMessage(),
                 "IllegalInputException",
                 JOptionPane.ERROR_MESSAGE);
     }
