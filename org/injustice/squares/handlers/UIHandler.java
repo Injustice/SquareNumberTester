@@ -31,13 +31,14 @@ public class UIHandler {
     }
 
     public void checkRetry(ApplicationFrame applicationFrame) {
+        final JFrame frame = handler.getDataHandler().getFrame();
         int result = JOptionPane.showOptionDialog(new JFrame() {
                                                       public boolean isShowing() {
                                                           return true;
                                                       }
-
                                                       public Rectangle getBounds() {
-                                                          return new Rectangle(handler.getDataHandler().getFrame().getBounds().x, handler.getDataHandler().getFrame().getBounds().y + 270, 0, 0);
+                                                          return new Rectangle((frame.getBounds().x + (int) (frame.getSize().getWidth() / 2)),
+                                                                  frame.getBounds().y + frame.getHeight() * 2 + 10, 0, 0);
                                                       }
                                                   },
                 "You got " + handler.getDataHandler().getCorrectInFirstGo() + "/" + handler.getDataHandler().getTotalNumberQuestions() + ". Retry?",
